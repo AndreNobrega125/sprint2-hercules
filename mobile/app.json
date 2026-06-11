@@ -1,6 +1,5 @@
 {
   "expo": {
-    "main": "index.js",
     "name": "VeroAI",
     "slug": "veroai-mobile",
     "version": "2.0.0",

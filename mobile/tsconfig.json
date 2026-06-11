@@ -2,7 +2,11 @@
   "compilerOptions": {
     "target": "ES2020",
     "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "lib": [
+      "ES2020",
+      "DOM",
+      "DOM.Iterable"
+    ],
     "module": "ESNext",
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -17,15 +21,38 @@
     "isolatedModules": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
-      "@types": ["src/types"],
-      "@screens": ["src/screens"],
-      "@components": ["src/components"],
-      "@mocks": ["src/mocks"],
-      "@services": ["src/services"],
-      "@context": ["src/context"]
+      "@/*": [
+        "src/*"
+      ],
+      "@types": [
+        "src/types"
+      ],
+      "@screens": [
+        "src/screens"
+      ],
+      "@components": [
+        "src/components"
+      ],
+      "@mocks": [
+        "src/mocks"
+      ],
+      "@services": [
+        "src/services"
+      ],
+      "@context": [
+        "src/context"
+      ]
     }
   },
-  "include": ["index.ts", "App.tsx", "src"],
-  "references": [{ "path": "./tsconfig.app.json" }]
+  "include": [
+    "index.ts",
+    "App.tsx",
+    "src"
+  ],
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    }
+  ],
+  "extends": "expo/tsconfig.base"
 }
