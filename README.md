@@ -233,6 +233,16 @@ Acesse **http://localhost:3000** no navegador.
 
 Para simular a experiência mobile, pressione `F12` no Chrome e ative o modo de dispositivo móvel (iPhone 14 Pro recomendado).
 
+### App Mobile (Sprint 2)
+
+```bash
+cd mobile
+npm install --legacy-peer-deps
+npx expo start
+```
+
+Ver [mobile/COMO_RODAR.md](mobile/COMO_RODAR.md) para instruções completas.
+
 ---
 
 ## Status do Projeto
