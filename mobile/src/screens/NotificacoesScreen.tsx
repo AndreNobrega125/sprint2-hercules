@@ -56,8 +56,13 @@ export function NotificacoesScreen() {
   const renderNotificacao = ({ item }: { item: Notificacao }) => {
     const handlePress = () => {
       markAsRead(item.id);
+
       if (item.titulo === 'Trechos para Vistoria') {
         navigation.navigate('ListaTrechosTab', { highlight: 'pendentes' });
+      } else if (item.titulo === 'Nova Vistoria Registrada' && item.trecho_id) {
+        navigation.navigate('TrechoDetalhe', { trechoId: item.trecho_id });
+      } else if (item.titulo === 'Roçada Concluída' && item.trecho_id) {
+        navigation.navigate('TrechoDetalhe', { trechoId: item.trecho_id });
       }
     };
 
