@@ -5,6 +5,7 @@
   "dependencies": {
     "@react-navigation/bottom-tabs": "^6.5.20",
     "@react-navigation/native": "^6.1.17",
+    "@react-navigation/native-stack": "^6.11.0",
     "@react-navigation/stack": "^6.3.29",
     "expo": "~56.0.9",
     "expo-camera": "~56.0.8",
