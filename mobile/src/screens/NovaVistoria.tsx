@@ -78,9 +78,9 @@ export function NovaVistoria() {
     }
 
     const statusMap = {
-      ok: alturaNum < 10,
-      atencao: alturaNum >= 10 && alturaNum <= 30,
-      critico: alturaNum > 30
+      ok: alturaNum <= 10,
+      atencao: alturaNum > 10 && alturaNum < 30,
+      critico: alturaNum >= 30
     };
 
     const novoStatus = Object.keys(statusMap).find(
@@ -121,14 +121,14 @@ export function NovaVistoria() {
   };
 
   const getStatusColor = (altura: number) => {
-    if (altura < 10) return '#4caf50';
-    if (altura <= 30) return '#ff9800';
+    if (altura <= 10) return '#4caf50';
+    if (altura < 30) return '#ff9800';
     return '#f44336';
   };
 
   const getStatusLabel = (altura: number) => {
-    if (altura < 10) return 'OK';
-    if (altura <= 30) return 'ATENÇÃO';
+    if (altura <= 10) return 'OK';
+    if (altura < 30) return 'ATENÇÃO';
     return 'CRÍTICO';
   };
 
