@@ -40,12 +40,26 @@ export const useDataStore = create<DataStore>((set, get) => ({
 
     const trecho = get().getTrechoById(vistoria.trecho_id);
     const notificationStore = useNotificationStore.getState();
+
+    // Notificar Gestor
     notificationStore.addNotificacao({
-      id: `notif-vistoria-${Date.now()}`,
+      id: `notif-vistoria-gestor-${Date.now()}`,
       usuario_id: '1',
       titulo: 'Nova Vistoria Registrada',
       mensagem: `Fiscal registrou vistoria no trecho ${trecho?.codigo}: ${vistoria.altura}cm`,
       tipo: 'info',
+      data: new Date().toISOString().split('T')[0],
+      lida: false,
+      trecho_id: vistoria.trecho_id
+    });
+
+    // Notificar Trabalhador
+    notificationStore.addNotificacao({
+      id: `notif-vistoria-trabalho-${Date.now()}`,
+      usuario_id: '3',
+      titulo: 'Nova Vistoria Disponível',
+      mensagem: `Vistoria registrada no trecho ${trecho?.codigo} - Verificar se precisa roçada`,
+      tipo: 'pendencia',
       data: new Date().toISOString().split('T')[0],
       lida: false,
       trecho_id: vistoria.trecho_id

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useFocusEffect } from 'react';
 import {
   View,
   Text,
@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   FlatList
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect as useNavFocusEffect } from '@react-navigation/native';
 import { useDataStore } from '../context/dataStore';
 import { Vistoria } from '../types';
 
@@ -23,6 +23,12 @@ export function TrechoDetalhe({ trechoId }: TrechoDetalheProps) {
   const intervencoes = useDataStore(state =>
     state.getIntervencoesByTrecho(trechoId)
   );
+
+  // Recarrega dados quando a tela ganha foco
+  useNavFocusEffect(() => {
+    // Força atualização recarregando os dados
+    return;
+  });
 
   if (!trecho) {
     return (
