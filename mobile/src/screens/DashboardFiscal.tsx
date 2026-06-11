@@ -19,14 +19,17 @@ export function DashboardFiscal() {
   const user = useAuthStore(state => state.user);
   const trechos = useDataStore(state => state.trechos);
 
+  const today = new Date().toISOString().split('T')[0];
+
   const stats = useMemo(() => {
     const total = trechos.length;
+    const precisaVistoriar = trechos.filter(t => t.data_ultima_vistoria !== today);
+    const vistoriados = trechos.filter(t => t.data_ultima_vistoria === today);
     const criticos = trechos.filter(t => t.status === 'critico');
     const atencao = trechos.filter(t => t.status === 'atencao');
-    const pendentes = [...criticos, ...atencao];
 
-    return { total, criticos, atencao, pendentes };
-  }, [trechos]);
+    return { total, precisaVistoriar, vistoriados, criticos, atencao };
+  }, [trechos, today]);
 
   const renderTrechoItem = ({ item }: { item: Trecho }) => {
     const statusColor = {
@@ -80,50 +83,51 @@ export function DashboardFiscal() {
           <Text style={styles.sectionTitle}>Resumo de Hoje</Text>
 
           <View style={styles.statGrid}>
-            <View style={[styles.statCard, { backgroundColor: '#f44336' }]}>
-              <Text style={styles.statValue}>{stats.criticos.length}</Text>
-              <Text style={styles.statLabel}>Crítico</Text>
-            </View>
-            <View style={[styles.statCard, { backgroundColor: '#ff9800' }]}>
-              <Text style={styles.statValue}>{stats.atencao.length}</Text>
-              <Text style={styles.statLabel}>Atenção</Text>
+            <View style={[styles.statCard, { backgroundColor: '#2196f3' }]}>
+              <Text style={styles.statValue}>{stats.precisaVistoriar.length}</Text>
+              <Text style={styles.statLabel}>A Vistoriar</Text>
             </View>
             <View style={[styles.statCard, { backgroundColor: '#4caf50' }]}>
+              <Text style={styles.statValue}>{stats.vistoriados.length}</Text>
+              <Text style={styles.statLabel}>Hoje</Text>
+            </View>
+            <View style={[styles.statCard, { backgroundColor: '#666' }]}>
               <Text style={styles.statValue}>{stats.total}</Text>
               <Text style={styles.statLabel}>Total</Text>
             </View>
           </View>
         </View>
 
-        {stats.criticos.length > 0 && (
+        {stats.precisaVistoriar.length > 0 && (
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Text style={styles.sectionTitle}>Trechos Críticos</Text>
-              <Text style={styles.criticalCount}>{stats.criticos.length}</Text>
+              <Text style={styles.sectionTitle}>🔵 Trechos que Preciso Vistoriar</Text>
+              <Text style={styles.badgeBlue}>{stats.precisaVistoriar.length}</Text>
             </View>
             <FlatList
               scrollEnabled={false}
-              data={stats.criticos}
+              data={stats.precisaVistoriar}
               renderItem={renderTrechoItem}
               keyExtractor={item => item.id}
             />
           </View>
         )}
 
-        {stats.atencao.length > 0 && (
+        {stats.vistoriados.length > 0 && (
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Text style={styles.sectionTitle}>Trechos em Atenção</Text>
-              <Text style={styles.attentionCount}>{stats.atencao.length}</Text>
+              <Text style={styles.sectionTitle}>✓ Vistoriado Hoje</Text>
+              <Text style={styles.badgeGreen}>{stats.vistoriados.length}</Text>
             </View>
             <FlatList
               scrollEnabled={false}
-              data={stats.atencao}
+              data={stats.vistoriados}
               renderItem={renderTrechoItem}
               keyExtractor={item => item.id}
             />
           </View>
         )}
+
 
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Ações Rápidas</Text>
@@ -184,20 +188,20 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#333'
   },
-  criticalCount: {
-    fontSize: 14,
+  badgeBlue: {
+    fontSize: 13,
     fontWeight: 'bold',
-    color: '#f44336',
-    backgroundColor: '#ffebee',
+    color: '#2196f3',
+    backgroundColor: '#e3f2fd',
     paddingHorizontal: 8,
     paddingVertical: 4,
     borderRadius: 4
   },
-  attentionCount: {
-    fontSize: 14,
+  badgeGreen: {
+    fontSize: 13,
     fontWeight: 'bold',
-    color: '#ff9800',
-    backgroundColor: '#fff3e0',
+    color: '#4caf50',
+    backgroundColor: '#e8f5e9',
     paddingHorizontal: 8,
     paddingVertical: 4,
     borderRadius: 4

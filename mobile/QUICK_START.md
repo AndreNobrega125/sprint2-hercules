@@ -23,9 +23,9 @@ Use uma das contas de teste:
 
 | Matrícula | Perfil | Nome |
 |-----------|--------|------|
-| 100001 | Gestor | Carlos Silva |
-| 200001 | Fiscal | João Fiscal |
-| 300001 | Trabalhador | Pedro Trabalhador |
+| G101 | Gestor | Gestor |
+| F101 | Fiscal | Fiscal |
+| T101 | Trabalhador | Trabalhador |
 
 **Senha**: qualquer valor (não validada)
 
@@ -45,7 +45,7 @@ Login → Tap aba "Notificações" → Tap notificação → Marcar como lida
 
 ### Fluxo 3: Nova Vistoria (Fiscal)
 ```
-Login com 200001 → Dashboard → "Nova Vistoria" → Step 1: Selecionar trecho 
+Login com F101 → Dashboard → "Nova Vistoria" → Step 1: Selecionar trecho 
 → Step 2: Capturar foto → Step 3: Informar altura (ex: 25cm) → Registrar
 ```
 
@@ -123,17 +123,17 @@ npm start
 
 ## 📱 Contas de Teste Detalhadas
 
-### 100001 - Gestor (Carlos Silva)
+### G101 - Gestor (Gestor)
 - Dashboard: KPIs, conformidade, intervenções
 - Cores: Azul (#1976d2)
 - Acesso: Todas as telas + relatórios (futura)
 
-### 200001 - Fiscal (João Fiscal)
+### F101 - Fiscal (Fiscal)
 - Dashboard: Trechos críticos, ação rápida "Nova Vistoria"
 - Cores: Azul claro (#2196f3)
 - Acesso: Todas as telas + registro de vistorias
 
-### 300001 - Trabalhador (Pedro Trabalhador)
+### T101 - Trabalhador (Trabalhador)
 - Dashboard: Tarefas do dia, trechos para roçada
 - Cores: Verde (#2e7d32)
 - Acesso: Tarefas + lista de trechos
@@ -209,7 +209,7 @@ npm install --legacy-peer-deps
 ## 🎯 Checklist Antes de Submeter
 
 - [ ] App roda sem erros com `npm start`
-- [ ] Login funciona com as 3 contas (100001, 200001, 300001)
+- [ ] Login funciona com as 3 contas (G101, F101, T101)
 - [ ] Dashboard muda de acordo com perfil
 - [ ] Botão "Ver Trechos" funciona
 - [ ] Clicar em trecho → vê detalhes

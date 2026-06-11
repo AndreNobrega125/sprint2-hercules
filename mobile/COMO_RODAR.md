@@ -64,9 +64,9 @@ w
 
 | Matrícula | Perfil | Nome |
 |-----------|--------|------|
-| **100001** | Gestor | Carlos Silva |
-| **200001** | Fiscal | João Fiscal |
-| **300001** | Trabalhador | Pedro Trabalhador |
+| **G101** | Gestor | Gestor |
+| **F101** | Fiscal | Fiscal |
+| **T101** | Trabalhador | Trabalhador |
 
 **Senha**: Qualquer valor (não validada na Sprint 2)
 
@@ -118,7 +118,7 @@ sprint2-hercules/
 ## 🎯 Fluxo Principal para Testar
 
 1. **Login**
-   - Inserir matrícula: `100001` (Gestor) | `200001` (Fiscal) | `300001` (Trabalhador)
+   - Inserir matrícula: `G101` (Gestor) | `F101` (Fiscal) | `T101` (Trabalhador)
    - Clicar "Entrar"
 
 2. **Dashboard**

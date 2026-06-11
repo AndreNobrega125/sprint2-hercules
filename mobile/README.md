@@ -70,7 +70,7 @@ veroai-mobile/
 
 ### 1️⃣ **Gestor (Matrícula 1xxxxx)**
 
-**Exemplo: 100001**
+**Exemplo: G101**
 
 **Funcionalidades:**
 - Visão consolidada de todos os trechos
@@ -86,7 +86,7 @@ veroai-mobile/
 
 ### 2️⃣ **Fiscal de Inspeção (Matrícula 2xxxxx)**
 
-**Exemplo: 200001**
+**Exemplo: F101**
 
 **Funcionalidades:**
 - Dashboard com trechos atribuídos e status
@@ -101,7 +101,7 @@ veroai-mobile/
 
 ### 3️⃣ **Trabalhador/Roçada (Matrícula 3xxxxx)**
 
-**Exemplo: 300001**
+**Exemplo: T101**
 
 **Funcionalidades:**
 - Dashboard com tarefas diárias (Pendentes / Em Andamento / Concluídas)
@@ -204,9 +204,9 @@ Use qualquer matrícula para login (a senha não é validada na Sprint 2).
 
 | Perfil | Matrícula | Nome | Cor |
 |--------|-----------|------|-----|
-| Gestor | **100001** | Carlos Silva | 🔵 Azul |
-| Fiscal | **200001** | João Fiscal | 🔷 Azul claro |
-| Trabalhador | **300001** | Pedro Trabalhador | 🟢 Verde |
+| Gestor | **G101** | Gestor | 🔵 Azul |
+| Fiscal | **F101** | Fiscal | 🔷 Azul claro |
+| Trabalhador | **T101** | Trabalhador | 🟢 Verde |
 
 ---
 
@@ -215,7 +215,7 @@ Use qualquer matrícula para login (a senha não é validada na Sprint 2).
 ### ✅ Fluxo 1: Login → Dashboard → Trechos
 
 1. **Tela de Login**
-   - Inserir matrícula (ex: 100001)
+   - Inserir matrícula (ex: G101)
    - Clicar "Entrar"
    - Redirects para dashboard de acordo com role
 

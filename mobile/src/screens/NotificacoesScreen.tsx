@@ -63,6 +63,8 @@ export function NotificacoesScreen() {
         navigation.navigate('TrechoDetalhe', { trechoId: item.trecho_id });
       } else if (item.titulo === 'Roçada Concluída' && item.trecho_id) {
         navigation.navigate('TrechoDetalhe', { trechoId: item.trecho_id });
+      } else if (item.titulo === 'Nova Vistoria Disponível' && item.trecho_id) {
+        navigation.navigate('TrechoDetalhe', { trechoId: item.trecho_id });
       }
     };
 

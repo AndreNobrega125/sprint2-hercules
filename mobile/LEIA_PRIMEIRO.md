@@ -20,9 +20,9 @@ Após o app abrir, use:
 
 | Matrícula | Perfil | Nome |
 |-----------|--------|------|
-| **100001** | Gestor | Carlos Silva |
-| **200001** | Fiscal | João Fiscal |
-| **300001** | Trabalhador | Pedro Trabalhador |
+| **G101** | Gestor | Gestor |
+| **F101** | Fiscal | Fiscal |
+| **T101** | Trabalhador | Trabalhador |
 
 Deixe a senha em branco e clique "Entrar".
 
