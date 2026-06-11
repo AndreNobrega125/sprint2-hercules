@@ -39,3 +39,14 @@ yarn-error.*
 # generated native folders
 /ios
 /android
+
+# AI assistants
+.claude/
+CLAUDE.md
+AGENTS.md
+.cursor/
+.windsurf/
+.aider*
+.copilot/
+.codeium/
+.github/copilot*

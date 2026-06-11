@@ -42,6 +42,8 @@ next-env.d.ts
 
 # AI assistants
 .claude/
+CLAUDE.md
+AGENTS.md
 .cursor/
 .windsurf/
 .aider*
