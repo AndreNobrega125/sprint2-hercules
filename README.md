@@ -241,6 +241,8 @@ npm install --legacy-peer-deps
 npx expo start
 ```
 
+Com o **Android Studio** aberto e um emulador Android em execução, pressione `a` no terminal para instalar e abrir o app no emulador.
+
 Ver [mobile/COMO_RODAR.md](mobile/COMO_RODAR.md) para instruções completas.
 
 ---
