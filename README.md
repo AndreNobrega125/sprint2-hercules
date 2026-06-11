@@ -6,15 +6,15 @@
 
 ## 🚀 Sprint 2 Disponível!
 
-O **app mobile nativo em React Native/Expo** está pronto em [app/](app/). 
+O **app mobile nativo em React Native/Expo** está pronto em [mobile/](mobile/). 
 
 ```bash
-cd app
+cd mobile
 npm install --legacy-peer-deps
 npx expo start
 ```
 
-Ver [app/COMO_RODAR.md](app/COMO_RODAR.md) para instruções completas.
+Ver [mobile/COMO_RODAR.md](mobile/COMO_RODAR.md) para instruções completas.
 
 **Destaques Sprint 2:**
 - ✅ 3 dashboards customizados (Gestor, Fiscal, Trabalhador)
@@ -219,8 +219,8 @@ Link do app: https://sprint1-hercules.vercel.app/login
 
 ```bash
 # Clonar o repositório
-git clone <(https://github.com/AndreNobrega125/sprint1-hercules)>
-cd veroai
+git clone https://github.com/AndreNobrega125/sprint2-hercules.git
+cd sprint2-hercules
 
 # Instalar dependências
 npm install

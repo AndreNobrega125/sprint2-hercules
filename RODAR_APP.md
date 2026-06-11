@@ -3,7 +3,6 @@
 ## 🌐 Sprint 1: Protótipo Web (Next.js)
 
 ```bash
-cd .. (volta para sprint1-hercules)
 npm install
 npm run dev
 ```
@@ -15,7 +14,7 @@ Abrir: **http://localhost:3000**
 ## 📱 Sprint 2: App Mobile (React Native/Expo)
 
 ```bash
-cd app
+cd mobile
 npm install --legacy-peer-deps
 npx expo start
 ```
@@ -40,11 +39,12 @@ npx expo start
 ## 📁 Estrutura
 
 ```
-sprint1-hercules/
+sprint2-hercules/
 ├── README.md              ← Sprint 1 info
 ├── RODAR_APP.md          ← Este arquivo
 ├── package.json          ← Sprint 1 dependencies
-├── app/                  ← Sprint 2 ⭐
+├── app/                  ← Rotas Next.js (Sprint 1)
+├── mobile/               ← Sprint 2 ⭐
 │   ├── COMO_RODAR.md
 │   ├── README.md
 │   ├── package.json
@@ -63,9 +63,9 @@ npm install && npm run dev
 
 **Sprint 2 (Mobile):**
 ```bash
-cd app && npm install --legacy-peer-deps && npx expo start
+cd mobile && npm install --legacy-peer-deps && npx expo start
 ```
 
 ---
 
-Ver `app/COMO_RODAR.md` para detalhes completos da Sprint 2.
+Ver `mobile/COMO_RODAR.md` para detalhes completos da Sprint 2.

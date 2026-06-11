@@ -3,7 +3,7 @@
 ## ⚡ Comando Rápido (Copiar e Colar)
 
 ```bash
-cd app
+cd mobile
 npm install --legacy-peer-deps
 npx expo start
 ```
@@ -14,7 +14,7 @@ npx expo start
 
 ### 1️⃣ Navegar até a pasta do app
 ```bash
-cd app
+cd mobile
 ```
 
 ### 2️⃣ Instalar dependências
@@ -95,10 +95,11 @@ npx tsc --noEmit  # Verificar erros
 ## 📍 Estrutura de Pastas
 
 ```
-sprint1-hercules/
+sprint2-hercules/
 ├── README.md                    ← Sprint 1 (web)
 ├── package.json                 ← Sprint 1 (Next.js)
-├── app/                         ← Sprint 2 (Mobile) ⭐
+├── app/                         ← Rotas Next.js (Sprint 1)
+├── mobile/                      ← Sprint 2 (Mobile) ⭐
 │   ├── src/
 │   ├── App.tsx
 │   ├── app.json
@@ -143,7 +144,7 @@ sprint1-hercules/
 
 ## 📚 Documentação
 
-Dentro da pasta `app/`:
+Dentro da pasta `mobile/`:
 - **README.md** - Documentação completa
 - **QUICK_START.md** - Guia rápido
 - **VIDEO_SCRIPT.md** - Roteiro para vídeo
