@@ -14,19 +14,21 @@ export const useAuthStore = create<AuthStore>((set) => ({
   isAuthenticated: false,
 
   login: (matricula: string) => {
-    const mockUser = getMockUserByMatricula(matricula);
     const role = getUserRole(matricula);
 
-    const user: User = mockUser
-      ? { ...mockUser, matricula }
-      : {
-          id: matricula,
-          matricula,
-          nome: role === 'gestor' ? 'Carlos Silva' : role === 'fiscal' ? 'João Fiscal' : 'Pedro Trabalhador',
-          role,
-          regional: 'Regional Oeste',
-          email: `user${matricula}@motiva.com.br`
-        };
+    if (!role) {
+      return false;
+    }
+
+    const mockUser = getMockUserByMatricula(matricula);
+    const user: User = mockUser || {
+      id: matricula,
+      matricula,
+      nome: role === 'gestor' ? 'Gestor' : role === 'fiscal' ? 'Fiscal' : 'Trabalhador',
+      role,
+      regional: 'Regional Oeste',
+      email: `user${matricula}@motiva.com.br`
+    };
 
     set({ user, isAuthenticated: true });
     return true;

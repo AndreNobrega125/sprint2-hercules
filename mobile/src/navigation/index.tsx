@@ -78,7 +78,8 @@ function AppTabsGestor() {
         component={DashboardGestor}
         options={{
           title: 'Dashboard',
-          tabBarLabel: 'Dashboard'
+          tabBarLabel: 'Dashboard',
+          tabBarIcon: ({ color }) => <Text style={{ fontSize: 20 }}>📊</Text>
         }}
       />
       <Tab.Screen
@@ -86,7 +87,8 @@ function AppTabsGestor() {
         component={ListaTrechos}
         options={{
           title: 'Trechos',
-          tabBarLabel: 'Trechos'
+          tabBarLabel: 'Trechos',
+          tabBarIcon: ({ color }) => <Text style={{ fontSize: 20 }}>🗺️</Text>
         }}
       />
       <Tab.Screen
@@ -95,6 +97,7 @@ function AppTabsGestor() {
         options={{
           title: 'Notificações',
           tabBarLabel: 'Notificações',
+          tabBarIcon: ({ color }) => <Text style={{ fontSize: 20 }}>🔔</Text>,
           tabBarBadge: unreadCount > 0 ? unreadCount : undefined
         }}
       />
@@ -135,7 +138,8 @@ function AppTabsFiscal() {
         component={DashboardFiscal}
         options={{
           title: 'Dashboard',
-          tabBarLabel: 'Dashboard'
+          tabBarLabel: 'Dashboard',
+          tabBarIcon: ({ color }) => <Text style={{ fontSize: 20 }}>📊</Text>
         }}
       />
       <Tab.Screen
@@ -143,7 +147,8 @@ function AppTabsFiscal() {
         component={ListaTrechos}
         options={{
           title: 'Trechos',
-          tabBarLabel: 'Trechos'
+          tabBarLabel: 'Trechos',
+          tabBarIcon: ({ color }) => <Text style={{ fontSize: 20 }}>🗺️</Text>
         }}
       />
       <Tab.Screen
@@ -152,6 +157,7 @@ function AppTabsFiscal() {
         options={{
           title: 'Notificações',
           tabBarLabel: 'Notificações',
+          tabBarIcon: ({ color }) => <Text style={{ fontSize: 20 }}>🔔</Text>,
           tabBarBadge: unreadCount > 0 ? unreadCount : undefined
         }}
       />
@@ -192,7 +198,8 @@ function AppTabsTrabalhador() {
         component={DashboardTrabalhador}
         options={{
           title: 'Minhas Tarefas',
-          tabBarLabel: 'Tarefas'
+          tabBarLabel: 'Tarefas',
+          tabBarIcon: ({ color }) => <Text style={{ fontSize: 20 }}>✓</Text>
         }}
       />
       <Tab.Screen
@@ -200,7 +207,8 @@ function AppTabsTrabalhador() {
         component={ListaTrechos}
         options={{
           title: 'Trechos',
-          tabBarLabel: 'Trechos'
+          tabBarLabel: 'Trechos',
+          tabBarIcon: ({ color }) => <Text style={{ fontSize: 20 }}>🗺️</Text>
         }}
       />
       <Tab.Screen
@@ -209,6 +217,7 @@ function AppTabsTrabalhador() {
         options={{
           title: 'Notificações',
           tabBarLabel: 'Notificações',
+          tabBarIcon: ({ color }) => <Text style={{ fontSize: 20 }}>🔔</Text>,
           tabBarBadge: unreadCount > 0 ? unreadCount : undefined
         }}
       />

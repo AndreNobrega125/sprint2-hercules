@@ -19,6 +19,8 @@ export function DashboardGestor() {
   const intervencoes = useDataStore(state => state.intervencoes);
   const unreadCount = useNotificationStore(state => state.unreadCount);
 
+  const vistorias = useDataStore(state => state.vistorias);
+
   const stats = useMemo(() => {
     const total = trechos.length;
     const ok = trechos.filter(t => t.status === 'ok').length;
@@ -26,9 +28,9 @@ export function DashboardGestor() {
     const critico = trechos.filter(t => t.status === 'critico').length;
     const conformidade = Math.round((ok / total) * 100);
     const pendentes = intervencoes.filter(i => i.status === 'pendente').length;
-    const emProgresso = intervencoes.filter(i => i.status === 'em_progresso').length;
+    const concluidas = intervencoes.filter(i => i.status === 'concluida').length;
 
-    return { total, ok, atencao, critico, conformidade, pendentes, emProgresso };
+    return { total, ok, atencao, critico, conformidade, pendentes, concluidas };
   }, [trechos, intervencoes]);
 
   return (
@@ -72,7 +74,7 @@ export function DashboardGestor() {
         </View>
 
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Intervenções</Text>
+          <Text style={styles.sectionTitle}>Roçadas</Text>
 
           <TouchableOpacity style={styles.actionCard}>
             <View style={styles.actionHeader}>
@@ -82,21 +84,44 @@ export function DashboardGestor() {
               </Text>
             </View>
             <Text style={styles.actionDesc}>
-              Aguardando execução por equipes de trabalho
+              Aguardando execução pelo trabalhador
             </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.actionCard}>
+          <TouchableOpacity style={[styles.actionCard, { borderLeftColor: '#4caf50' }]}>
             <View style={styles.actionHeader}>
-              <Text style={styles.actionTitle}>Em Progresso</Text>
-              <Text style={[styles.actionCount, { color: '#ff9800' }]}>
-                {stats.emProgresso}
+              <Text style={styles.actionTitle}>Concluídas</Text>
+              <Text style={[styles.actionCount, { color: '#4caf50' }]}>
+                {stats.concluidas}
               </Text>
             </View>
             <Text style={styles.actionDesc}>
-              Sendo executadas em campo
+              Roçadas finalizadas pelo trabalhador
             </Text>
           </TouchableOpacity>
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Vistorias Recentes ({vistorias.length})</Text>
+
+          {vistorias.length > 0 ? (
+            vistorias.slice(-3).reverse().map(vistoria => {
+              const trecho = trechos.find(t => t.id === vistoria.trecho_id);
+              return (
+                <View key={vistoria.id} style={styles.vistoriaCard}>
+                  <View style={styles.vistoriaHeader}>
+                    <Text style={styles.vistoriaTrecho}>{trecho?.codigo}</Text>
+                    <Text style={styles.vistoriaAltura}>{vistoria.altura}cm</Text>
+                  </View>
+                  <Text style={styles.vistoriaData}>{vistoria.data} às {vistoria.hora}</Text>
+                </View>
+              );
+            })
+          ) : (
+            <View style={styles.emptyCard}>
+              <Text style={styles.emptyText}>Nenhuma vistoria registrada</Text>
+            </View>
+          )}
         </View>
 
         <View style={styles.section}>
@@ -290,5 +315,42 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 14,
     fontWeight: '600'
+  },
+  vistoriaCard: {
+    backgroundColor: '#fff',
+    borderRadius: 8,
+    padding: 12,
+    marginBottom: 8,
+    borderLeftWidth: 4,
+    borderLeftColor: '#2196f3'
+  },
+  vistoriaHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 6
+  },
+  vistoriaTrecho: {
+    fontSize: 13,
+    fontWeight: '600',
+    color: '#333'
+  },
+  vistoriaAltura: {
+    fontSize: 12,
+    fontWeight: 'bold',
+    color: '#2196f3'
+  },
+  vistoriaData: {
+    fontSize: 11,
+    color: '#999'
+  },
+  emptyCard: {
+    backgroundColor: '#f5f5f5',
+    borderRadius: 8,
+    padding: 20,
+    alignItems: 'center'
+  },
+  emptyText: {
+    fontSize: 12,
+    color: '#999'
   }
 });

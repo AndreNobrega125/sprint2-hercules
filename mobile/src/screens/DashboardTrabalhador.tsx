@@ -6,7 +6,8 @@ import {
   ScrollView,
   TouchableOpacity,
   SafeAreaView,
-  FlatList
+  FlatList,
+  Alert
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useDataStore } from '../context/dataStore';
@@ -73,7 +74,18 @@ export function DashboardTrabalhador() {
         </View>
         <TouchableOpacity
           style={styles.completeButton}
-          onPress={() => completeIntervencao(item.id)}
+          onPress={() => {
+            if (!trecho?.data_ultima_vistoria) {
+              Alert.alert(
+                'Erro',
+                'Não é possível marcar como concluída. O fiscal precisa fazer uma vistoria primeiro.',
+                [{ text: 'OK' }]
+              );
+              return;
+            }
+            completeIntervencao(item.id);
+            Alert.alert('Sucesso', 'Roçada marcada como concluída!', [{ text: 'OK' }]);
+          }}
         >
           <Text style={styles.completeButtonText}>Marcar Roçada como Concluída</Text>
         </TouchableOpacity>
@@ -165,14 +177,6 @@ export function DashboardTrabalhador() {
           )}
         </View>
 
-        <View style={styles.section}>
-          <TouchableOpacity
-            style={styles.actionButton}
-            onPress={() => navigation.navigate('ListaTrechosTab')}
-          >
-            <Text style={styles.actionButtonText}>Ver Todos os Trechos</Text>
-          </TouchableOpacity>
-        </View>
       </ScrollView>
     </SafeAreaView>
   );

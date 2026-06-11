@@ -12,11 +12,10 @@ import { useDataStore } from '../context/dataStore';
 import { useAuthStore } from '../context/authStore';
 import { Trecho } from '../types';
 
-interface DashboardFiscalProps {
-  onNavigate?: (screen: string, params?: any) => void;
-}
+import { useNavigation } from '@react-navigation/native';
 
-export function DashboardFiscal({ onNavigate }: DashboardFiscalProps) {
+export function DashboardFiscal() {
+  const navigation = useNavigation<any>();
   const user = useAuthStore(state => state.user);
   const trechos = useDataStore(state => state.trechos);
 
@@ -39,7 +38,7 @@ export function DashboardFiscal({ onNavigate }: DashboardFiscalProps) {
     return (
       <TouchableOpacity
         style={styles.trechoCard}
-        onPress={() => onNavigate?.('trechoDetalhe', { trechoId: item.id })}
+        onPress={() => navigation.navigate('TrechoDetalhe', { trechoId: item.id })}
       >
         <View style={styles.trechoHeader}>
           <View style={{ flex: 1 }}>
@@ -131,7 +130,7 @@ export function DashboardFiscal({ onNavigate }: DashboardFiscalProps) {
 
           <TouchableOpacity
             style={styles.actionButton}
-            onPress={() => onNavigate?.('novaVistoria')}
+            onPress={() => navigation.navigate('NovaVistoria')}
           >
             <Text style={styles.actionButtonText}>+ Nova Vistoria</Text>
           </TouchableOpacity>

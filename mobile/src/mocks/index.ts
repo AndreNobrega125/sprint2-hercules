@@ -9,27 +9,27 @@ const formatDate = (date: Date) => date.toISOString().split('T')[0];
 export const mockUsers: User[] = [
   {
     id: '1',
-    matricula: '100001',
-    nome: 'Carlos Silva',
+    matricula: 'G101',
+    nome: 'Gestor',
     role: 'gestor',
     regional: 'Regional Oeste',
-    email: 'carlos.silva@motiva.com.br'
+    email: 'gestor@motiva.com.br'
   },
   {
     id: '2',
-    matricula: '200001',
-    nome: 'João Fiscal',
+    matricula: 'F101',
+    nome: 'Fiscal',
     role: 'fiscal',
     regional: 'Regional Oeste',
-    email: 'joao.fiscal@motiva.com.br'
+    email: 'fiscal@motiva.com.br'
   },
   {
     id: '3',
-    matricula: '300001',
-    nome: 'Pedro Trabalhador',
+    matricula: 'T101',
+    nome: 'Trabalhador',
     role: 'trabalhador',
     regional: 'Regional Oeste',
-    email: 'pedro.trabalho@motiva.com.br'
+    email: 'trabalhador@motiva.com.br'
   }
 ];
 
@@ -235,12 +235,11 @@ export const mockNotificacoes: Notificacao[] = [
   }
 ];
 
-export function getUserRole(matricula: string): 'gestor' | 'fiscal' | 'trabalhador' {
-  const firstDigit = parseInt(matricula[0]);
-  if (firstDigit === 1) return 'gestor';
-  if (firstDigit === 2) return 'fiscal';
-  if (firstDigit === 3) return 'trabalhador';
-  return 'fiscal';
+export function getUserRole(matricula: string): 'gestor' | 'fiscal' | 'trabalhador' | null {
+  if (matricula === 'G101') return 'gestor';
+  if (matricula === 'F101') return 'fiscal';
+  if (matricula === 'T101') return 'trabalhador';
+  return null;
 }
 
 export function getMockUserByMatricula(matricula: string): User | undefined {
