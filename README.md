@@ -217,33 +217,38 @@ Link do app: https://sprint1-hercules.vercel.app/login
 
 ## Como Rodar Localmente
 
+O app nativo (Sprint 2, em [mobile/](mobile/)) é a forma recomendada de rodar o projeto.
+
 ```bash
 # Clonar o repositório
 git clone https://github.com/AndreNobrega125/sprint2-hercules.git
 cd sprint2-hercules
 
-# Instalar dependências
-npm install
-
-# Rodar em modo desenvolvimento
-npm run dev
-```
-
-Acesse **http://localhost:3000** no navegador.
-
-Para simular a experiência mobile, pressione `F12` no Chrome e ative o modo de dispositivo móvel (iPhone 14 Pro recomendado).
-
-### App Mobile (Sprint 2)
-
-```bash
+# Entrar na pasta do app mobile
 cd mobile
+
+# Instalar dependências
 npm install --legacy-peer-deps
+
+# Rodar com Expo
 npx expo start
 ```
 
 Com o **Android Studio** aberto e um emulador Android em execução, pressione `a` no terminal para instalar e abrir o app no emulador.
 
 Ver [mobile/COMO_RODAR.md](mobile/COMO_RODAR.md) para instruções completas.
+
+### Protótipo Web (Sprint 1)
+
+A versão web em Next.js (pasta [app/](app/)) continua disponível como protótipo navegável:
+
+```bash
+cd sprint2-hercules
+npm install
+npm run dev
+```
+
+Acesse **http://localhost:3000** no navegador.
 
 ---
 
