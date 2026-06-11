@@ -18,6 +18,26 @@ export function NovaVistoria() {
   const navigation = useNavigation<any>();
   const route = useRoute<any>();
   const user = useAuthStore(state => state.user);
+
+  if (user?.role === 'trabalhador') {
+    return (
+      <SafeAreaView style={styles.container}>
+        <View style={styles.errorContainer}>
+          <Text style={styles.errorText}>❌</Text>
+          <Text style={styles.errorTitle}>Acesso Negado</Text>
+          <Text style={styles.errorMessage}>
+            Apenas fiscais podem registrar vistorias.
+          </Text>
+          <TouchableOpacity
+            style={styles.backButton}
+            onPress={() => navigation.goBack()}
+          >
+            <Text style={styles.backButtonText}>Voltar</Text>
+          </TouchableOpacity>
+        </View>
+      </SafeAreaView>
+    );
+  }
   const trechos = useDataStore(state => state.trechos);
   const createVistoria = useDataStore(state => state.createVistoria);
   const updateTrechoStatus = useDataStore(state => state.updateTrechoStatus);
@@ -489,5 +509,40 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 15,
     fontWeight: '700'
+  },
+  errorContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 20
+  },
+  errorText: {
+    fontSize: 64,
+    marginBottom: 16
+  },
+  errorTitle: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: '#f44336',
+    marginBottom: 8,
+    textAlign: 'center'
+  },
+  errorMessage: {
+    fontSize: 14,
+    color: '#666',
+    textAlign: 'center',
+    marginBottom: 24
+  },
+  backButton: {
+    backgroundColor: '#f44336',
+    borderRadius: 8,
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    alignItems: 'center'
+  },
+  backButtonText: {
+    color: '#fff',
+    fontSize: 14,
+    fontWeight: '600'
   }
 });

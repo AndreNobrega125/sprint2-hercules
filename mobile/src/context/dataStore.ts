@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { Trecho, Vistoria, Intervencao } from '../types';
 import { mockTrechos, mockVistorias, mockIntervencoes } from '../mocks';
+import { useNotificationStore } from './notificationStore';
 
 interface DataStore {
   trechos: Trecho[];
@@ -36,6 +37,19 @@ export const useDataStore = create<DataStore>((set, get) => ({
     set(state => ({
       vistorias: [...state.vistorias, vistoria]
     }));
+
+    const trecho = get().getTrechoById(vistoria.trecho_id);
+    const notificationStore = useNotificationStore.getState();
+    notificationStore.addNotificacao({
+      id: `notif-vistoria-${Date.now()}`,
+      usuario_id: '1',
+      titulo: 'Nova Vistoria Registrada',
+      mensagem: `Fiscal registrou vistoria no trecho ${trecho?.codigo}: ${vistoria.altura}cm`,
+      tipo: 'info',
+      data: new Date().toISOString().split('T')[0],
+      lida: false,
+      trecho_id: vistoria.trecho_id
+    });
   },
 
   updateTrechoStatus: (trechoId: string, status: any, altura: number) => {
@@ -65,6 +79,34 @@ export const useDataStore = create<DataStore>((set, get) => ({
           : i
       )
     }));
+
+    const intervencao = get().intervencoes.find(i => i.id === intervencaoId);
+    const trecho = get().getTrechoById(intervencao?.trecho_id || '');
+    const notificationStore = useNotificationStore.getState();
+
+    if (intervencao && trecho) {
+      notificationStore.addNotificacao({
+        id: `notif-rocada-fiscal-${Date.now()}`,
+        usuario_id: '2',
+        titulo: 'Roçada Concluída',
+        mensagem: `Trabalhador concluiu roçada no trecho ${trecho.codigo}`,
+        tipo: 'conclusao',
+        data: new Date().toISOString().split('T')[0],
+        lida: false,
+        trecho_id: intervencao.trecho_id
+      });
+
+      notificationStore.addNotificacao({
+        id: `notif-rocada-gestor-${Date.now()}`,
+        usuario_id: '1',
+        titulo: 'Roçada Concluída',
+        mensagem: `Trabalhador concluiu roçada no trecho ${trecho.codigo}`,
+        tipo: 'conclusao',
+        data: new Date().toISOString().split('T')[0],
+        lida: false,
+        trecho_id: intervencao.trecho_id
+      });
+    }
   },
 
   getTrechosWithStatus: (status: string) => {
