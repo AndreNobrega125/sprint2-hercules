@@ -137,7 +137,7 @@ export function DashboardFiscal() {
 
           <TouchableOpacity
             style={[styles.actionButton, { backgroundColor: '#666' }]}
-            onPress={() => onNavigate?.('trechos')}
+            onPress={() => navigation.navigate('ListaTrechosTab')}
           >
             <Text style={styles.actionButtonText}>Ver Todos os Trechos</Text>
           </TouchableOpacity>
