@@ -7,15 +7,13 @@ import {
   TouchableOpacity,
   SafeAreaView
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { useDataStore } from '../context/dataStore';
 import { useAuthStore } from '../context/authStore';
 import { useNotificationStore } from '../context/notificationStore';
 
-interface DashboardGestorProps {
-  onNavigate?: (screen: string) => void;
-}
-
-export function DashboardGestor({ onNavigate }: DashboardGestorProps) {
+export function DashboardGestor() {
+  const navigation = useNavigation<any>();
   const user = useAuthStore(state => state.user);
   const trechos = useDataStore(state => state.trechos);
   const intervencoes = useDataStore(state => state.intervencoes);
@@ -106,7 +104,7 @@ export function DashboardGestor({ onNavigate }: DashboardGestorProps) {
 
           <TouchableOpacity
             style={styles.notificationCard}
-            onPress={() => onNavigate?.('notifications')}
+            onPress={() => navigation.navigate('NotificacoesTab')}
           >
             <View style={styles.notificationBadge}>
               <Text style={styles.notificationCount}>{unreadCount}</Text>
@@ -129,16 +127,9 @@ export function DashboardGestor({ onNavigate }: DashboardGestorProps) {
 
           <TouchableOpacity
             style={styles.quickActionButton}
-            onPress={() => onNavigate?.('trechos')}
+            onPress={() => navigation.navigate('ListaTrechosTab')}
           >
             <Text style={styles.quickActionText}>Ver Todos os Trechos</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={styles.quickActionButton}
-            onPress={() => onNavigate?.('report')}
-          >
-            <Text style={styles.quickActionText}>Gerar Relatório</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>

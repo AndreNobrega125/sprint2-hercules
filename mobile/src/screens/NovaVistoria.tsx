@@ -9,22 +9,23 @@ import {
   TextInput,
   Alert
 } from 'react-native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { useDataStore } from '../context/dataStore';
 import { useAuthStore } from '../context/authStore';
 import { Vistoria } from '../types';
 
-interface NovaVistoriaProps {
-  onNavigate?: (screen: string) => void;
-}
-
-export function NovaVistoria({ onNavigate }: NovaVistoriaProps) {
+export function NovaVistoria() {
+  const navigation = useNavigation<any>();
+  const route = useRoute<any>();
   const user = useAuthStore(state => state.user);
   const trechos = useDataStore(state => state.trechos);
   const createVistoria = useDataStore(state => state.createVistoria);
   const updateTrechoStatus = useDataStore(state => state.updateTrechoStatus);
 
-  const [step, setStep] = useState<1 | 2 | 3>(1);
-  const [selectedTrecho, setSelectedTrecho] = useState<string>('');
+  const trechoIdParam: string | undefined = route.params?.trechoId;
+
+  const [step, setStep] = useState<1 | 2 | 3>(trechoIdParam ? 2 : 1);
+  const [selectedTrecho, setSelectedTrecho] = useState<string>(trechoIdParam || '');
   const [altura, setAltura] = useState('');
   const [observacoes, setObservacoes] = useState('');
   const [fotoCapturada, setFotoCapturada] = useState(false);
@@ -89,7 +90,7 @@ export function NovaVistoria({ onNavigate }: NovaVistoriaProps) {
     updateTrechoStatus(selectedTrecho, novoStatus, alturaNum);
 
     Alert.alert('Sucesso', 'Vistoria registrada com sucesso!', [
-      { text: 'OK', onPress: () => onNavigate?.('trechoDetalhe') }
+      { text: 'OK', onPress: () => navigation.goBack() }
     ]);
 
     setStep(1);

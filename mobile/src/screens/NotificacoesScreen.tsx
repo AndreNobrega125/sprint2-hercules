@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
   View,
   Text,
@@ -10,11 +10,7 @@ import {
 import { useNotificationStore } from '../context/notificationStore';
 import { Notificacao } from '../types';
 
-interface NotificacoesScreenProps {
-  usuarioId: string;
-}
-
-export function NotificacoesScreen({ usuarioId }: NotificacoesScreenProps) {
+export function NotificacoesScreen() {
   const notificacoes = useNotificationStore(state => state.notificacoes);
   const markAsRead = useNotificationStore(state => state.markAsRead);
   const markAllAsRead = useNotificationStore(
@@ -24,12 +20,6 @@ export function NotificacoesScreen({ usuarioId }: NotificacoesScreenProps) {
     state => state.deleteNotificacao
   );
   const unreadCount = notificacoes.filter(n => !n.lida).length;
-
-  useEffect(() => {
-    useNotificationStore.setState(state => ({
-      notificacoes: state.notificacoes.filter(n => n.usuario_id === usuarioId)
-    }));
-  }, [usuarioId]);
 
   const getTipoColor = (tipo: string) => {
     switch (tipo) {

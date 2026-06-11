@@ -1,4 +1,5 @@
 import React from 'react';
+import { TouchableOpacity, Text } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
@@ -30,6 +31,20 @@ function getTabColor(role: string) {
   }
 }
 
+function LogoutButton() {
+  const logout = useAuthStore(state => state.logout);
+
+  return (
+    <TouchableOpacity onPress={logout} style={{ marginRight: 16 }}>
+      <Text style={{ color: '#fff', fontWeight: '600' }}>Sair</Text>
+    </TouchableOpacity>
+  );
+}
+
+function TrechoDetalheRoute({ route }: any) {
+  return <TrechoDetalhe trechoId={route.params.trechoId} />;
+}
+
 function AppTabsGestor() {
   const user = useAuthStore(state => state.user);
   const initializeNotificacoes = useNotificationStore(
@@ -46,7 +61,10 @@ function AppTabsGestor() {
   return (
     <Tab.Navigator
       screenOptions={{
-        headerShown: false,
+        headerShown: true,
+        headerStyle: { backgroundColor: '#1976d2' },
+        headerTintColor: '#fff',
+        headerRight: LogoutButton,
         tabBarActiveTintColor: '#1976d2',
         tabBarInactiveTintColor: '#999',
         tabBarStyle: {
@@ -73,15 +91,11 @@ function AppTabsGestor() {
       />
       <Tab.Screen
         name="NotificacoesTab"
-        component={() =>
-          user ? (
-            <NotificacoesScreen usuarioId={user.id} />
-          ) : null
-        }
+        component={NotificacoesScreen}
         options={{
           title: 'Notificações',
           tabBarLabel: 'Notificações',
-          tabBarBadge: unreadCount > 0 ? unreadCount : null
+          tabBarBadge: unreadCount > 0 ? unreadCount : undefined
         }}
       />
     </Tab.Navigator>
@@ -104,7 +118,10 @@ function AppTabsFiscal() {
   return (
     <Tab.Navigator
       screenOptions={{
-        headerShown: false,
+        headerShown: true,
+        headerStyle: { backgroundColor: '#2196f3' },
+        headerTintColor: '#fff',
+        headerRight: LogoutButton,
         tabBarActiveTintColor: '#2196f3',
         tabBarInactiveTintColor: '#999',
         tabBarStyle: {
@@ -131,15 +148,11 @@ function AppTabsFiscal() {
       />
       <Tab.Screen
         name="NotificacoesTab"
-        component={() =>
-          user ? (
-            <NotificacoesScreen usuarioId={user.id} />
-          ) : null
-        }
+        component={NotificacoesScreen}
         options={{
           title: 'Notificações',
           tabBarLabel: 'Notificações',
-          tabBarBadge: unreadCount > 0 ? unreadCount : null
+          tabBarBadge: unreadCount > 0 ? unreadCount : undefined
         }}
       />
     </Tab.Navigator>
@@ -162,7 +175,10 @@ function AppTabsTrabalhador() {
   return (
     <Tab.Navigator
       screenOptions={{
-        headerShown: false,
+        headerShown: true,
+        headerStyle: { backgroundColor: '#2e7d32' },
+        headerTintColor: '#fff',
+        headerRight: LogoutButton,
         tabBarActiveTintColor: '#2e7d32',
         tabBarInactiveTintColor: '#999',
         tabBarStyle: {
@@ -189,15 +205,11 @@ function AppTabsTrabalhador() {
       />
       <Tab.Screen
         name="NotificacoesTab"
-        component={() =>
-          user ? (
-            <NotificacoesScreen usuarioId={user.id} />
-          ) : null
-        }
+        component={NotificacoesScreen}
         options={{
           title: 'Notificações',
           tabBarLabel: 'Notificações',
-          tabBarBadge: unreadCount > 0 ? unreadCount : null
+          tabBarBadge: unreadCount > 0 ? unreadCount : undefined
         }}
       />
     </Tab.Navigator>
@@ -206,7 +218,6 @@ function AppTabsTrabalhador() {
 
 function AppStack() {
   const user = useAuthStore(state => state.user);
-  const logout = useAuthStore(state => state.logout);
 
   if (!user) {
     return (
@@ -246,11 +257,10 @@ function AppStack() {
       />
       <Stack.Screen
         name="TrechoDetalhe"
-        component={({ route }: any) => (
-          <TrechoDetalhe trechoId={route.params.trechoId} />
-        )}
+        component={TrechoDetalheRoute}
         options={{
-          title: 'Detalhes do Trecho'
+          title: 'Detalhes do Trecho',
+          headerRight: LogoutButton
         }}
       />
       <Stack.Screen
@@ -258,21 +268,12 @@ function AppStack() {
         component={NovaVistoria}
         options={{
           title: 'Registrar Vistoria',
-          headerRight: () => (
-            <TouchableOpacity
-              onPress={logout}
-              style={{ marginRight: 16 }}
-            >
-              <Text style={{ color: '#fff', fontWeight: '600' }}>Sair</Text>
-            </TouchableOpacity>
-          )
+          headerRight: LogoutButton
         }}
       />
     </Stack.Navigator>
   );
 }
-
-import { TouchableOpacity, Text } from 'react-native';
 
 export function RootNavigator() {
   return (

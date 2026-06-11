@@ -8,18 +8,17 @@ import {
   SafeAreaView,
   FlatList
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { useDataStore } from '../context/dataStore';
 import { useAuthStore } from '../context/authStore';
 import { Intervencao, Trecho } from '../types';
 
-interface DashboardTrabalhadorProps {
-  onNavigate?: (screen: string, params?: any) => void;
-}
-
-export function DashboardTrabalhador({ onNavigate }: DashboardTrabalhadorProps) {
+export function DashboardTrabalhador() {
+  const navigation = useNavigation<any>();
   const user = useAuthStore(state => state.user);
   const intervencoes = useDataStore(state => state.intervencoes);
   const trechos = useDataStore(state => state.trechos);
+  const completeIntervencao = useDataStore(state => state.completeIntervencao);
 
   const stats = useMemo(() => {
     const pendentes = intervencoes.filter(i => i.status === 'pendente');
@@ -45,10 +44,7 @@ export function DashboardTrabalhador({ onNavigate }: DashboardTrabalhadorProps) 
     }[item.prioridade];
 
     return (
-      <TouchableOpacity
-        style={styles.intervencaoCard}
-        onPress={() => onNavigate?.('intervencaoDetalhe', { intervencaoId: item.id })}
-      >
+      <View style={styles.intervencaoCard}>
         <View style={styles.intervencaoHeader}>
           <View style={{ flex: 1 }}>
             <Text style={styles.trechoCodigo}>{trecho?.codigo}</Text>
@@ -75,7 +71,13 @@ export function DashboardTrabalhador({ onNavigate }: DashboardTrabalhadorProps) 
             {item.data_recomendada || 'Monitoramento'}
           </Text>
         </View>
-      </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.completeButton}
+          onPress={() => completeIntervencao(item.id)}
+        >
+          <Text style={styles.completeButtonText}>Marcar Roçada como Concluída</Text>
+        </TouchableOpacity>
+      </View>
     );
   };
 
@@ -166,7 +168,7 @@ export function DashboardTrabalhador({ onNavigate }: DashboardTrabalhadorProps) 
         <View style={styles.section}>
           <TouchableOpacity
             style={styles.actionButton}
-            onPress={() => onNavigate?.('trechos')}
+            onPress={() => navigation.navigate('ListaTrechosTab')}
           >
             <Text style={styles.actionButtonText}>Ver Todos os Trechos</Text>
           </TouchableOpacity>
@@ -303,6 +305,18 @@ const styles = StyleSheet.create({
     fontSize: 11,
     color: '#666',
     fontWeight: '500'
+  },
+  completeButton: {
+    marginTop: 10,
+    backgroundColor: '#2e7d32',
+    borderRadius: 6,
+    paddingVertical: 8,
+    alignItems: 'center'
+  },
+  completeButtonText: {
+    color: '#fff',
+    fontSize: 12,
+    fontWeight: '600'
   },
   infoText: {
     fontSize: 12,

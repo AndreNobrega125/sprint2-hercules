@@ -8,14 +8,12 @@ import {
   TouchableOpacity,
   TextInput
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { useDataStore } from '../context/dataStore';
 import { Trecho } from '../types';
 
-interface ListaTrechosProps {
-  onNavigate?: (screen: string, params?: any) => void;
-}
-
-export function ListaTrechos({ onNavigate }: ListaTrechosProps) {
+export function ListaTrechos() {
+  const navigation = useNavigation<any>();
   const trechos = useDataStore(state => state.trechos);
   const [filtro, setFiltro] = useState('');
   const [ordenacao, setOrdenacao] = useState<'criticidade' | 'nome'>('criticidade');
@@ -72,7 +70,7 @@ export function ListaTrechos({ onNavigate }: ListaTrechosProps) {
   const renderTrecho = ({ item }: { item: Trecho }) => (
     <TouchableOpacity
       style={styles.trechoCard}
-      onPress={() => onNavigate?.('trechoDetalhe', { trechoId: item.id })}
+      onPress={() => navigation.navigate('TrechoDetalhe', { trechoId: item.id })}
     >
       <View style={styles.cardHeader}>
         <View style={{ flex: 1 }}>

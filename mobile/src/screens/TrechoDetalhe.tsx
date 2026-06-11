@@ -8,15 +8,16 @@ import {
   TouchableOpacity,
   FlatList
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { useDataStore } from '../context/dataStore';
 import { Vistoria } from '../types';
 
 interface TrechoDetalheProps {
   trechoId: string;
-  onNavigate?: (screen: string) => void;
 }
 
-export function TrechoDetalhe({ trechoId, onNavigate }: TrechoDetalheProps) {
+export function TrechoDetalhe({ trechoId }: TrechoDetalheProps) {
+  const navigation = useNavigation<any>();
   const trecho = useDataStore(state => state.getTrechoById(trechoId));
   const vistorias = useDataStore(state => state.getVistoriasByTrecho(trechoId));
   const intervencoes = useDataStore(state =>
@@ -187,7 +188,7 @@ export function TrechoDetalhe({ trechoId, onNavigate }: TrechoDetalheProps) {
         <View style={styles.actionSection}>
           <TouchableOpacity
             style={styles.actionButton}
-            onPress={() => onNavigate?.('novaVistoria')}
+            onPress={() => navigation.navigate('NovaVistoria', { trechoId })}
           >
             <Text style={styles.actionButtonText}>+ Registrar Nova Vistoria</Text>
           </TouchableOpacity>
