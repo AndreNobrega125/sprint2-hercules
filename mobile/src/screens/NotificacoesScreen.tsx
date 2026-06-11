@@ -7,10 +7,12 @@ import {
   SafeAreaView,
   TouchableOpacity
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { useNotificationStore } from '../context/notificationStore';
 import { Notificacao } from '../types';
 
 export function NotificacoesScreen() {
+  const navigation = useNavigation<any>();
   const notificacoes = useNotificationStore(state => state.notificacoes);
   const markAsRead = useNotificationStore(state => state.markAsRead);
   const markAllAsRead = useNotificationStore(
@@ -51,13 +53,21 @@ export function NotificacoesScreen() {
     }
   };
 
-  const renderNotificacao = ({ item }: { item: Notificacao }) => (
+  const renderNotificacao = ({ item }: { item: Notificacao }) => {
+    const handlePress = () => {
+      markAsRead(item.id);
+      if (item.titulo === 'Trechos para Vistoria') {
+        navigation.navigate('ListaTrechosTab', { highlight: 'pendentes' });
+      }
+    };
+
+    return (
     <TouchableOpacity
       style={[
         styles.notificacaoCard,
         !item.lida && styles.notificacaoCardUnread
       ]}
-      onPress={() => markAsRead(item.id)}
+      onPress={handlePress}
     >
       <View style={styles.notificacaoLeft}>
         <View
@@ -88,7 +98,8 @@ export function NotificacoesScreen() {
         <Text style={styles.deleteButtonText}>✕</Text>
       </TouchableOpacity>
     </TouchableOpacity>
-  );
+    );
+  };
 
   return (
     <SafeAreaView style={styles.container}>

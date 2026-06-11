@@ -8,12 +8,14 @@ import {
   TouchableOpacity,
   TextInput
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { useDataStore } from '../context/dataStore';
 import { Trecho } from '../types';
 
 export function ListaTrechos() {
   const navigation = useNavigation<any>();
+  const route = useRoute<any>();
+  const highlightPendentes = route.params?.highlight === 'pendentes';
   const trechos = useDataStore(state => state.trechos);
   const [filtro, setFiltro] = useState('');
   const [ordenacao, setOrdenacao] = useState<'criticidade' | 'nome'>('criticidade');
@@ -67,9 +69,13 @@ export function ListaTrechos() {
     }
   };
 
-  const renderTrecho = ({ item }: { item: Trecho }) => (
+  const renderTrecho = ({ item }: { item: Trecho }) => {
+    const isPendente = item.status === 'critico' || item.status === 'atencao';
+    const highlightStyle = highlightPendentes && isPendente ? styles.trechoCardHighlight : {};
+
+    return (
     <TouchableOpacity
-      style={styles.trechoCard}
+      style={[styles.trechoCard, highlightStyle]}
       onPress={() => navigation.navigate('TrechoDetalhe', { trechoId: item.id })}
     >
       <View style={styles.cardHeader}>
@@ -103,7 +109,8 @@ export function ListaTrechos() {
         </Text>
       </View>
     </TouchableOpacity>
-  );
+    );
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -248,6 +255,13 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     borderLeftWidth: 4,
     borderLeftColor: '#1976d2'
+  },
+  trechoCardHighlight: {
+    backgroundColor: '#fff3e0',
+    borderWidth: 2,
+    borderColor: '#ff9800',
+    borderLeftWidth: 4,
+    borderLeftColor: '#ff9800'
   },
   cardHeader: {
     flexDirection: 'row',
