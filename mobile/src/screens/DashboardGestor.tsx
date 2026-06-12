@@ -17,7 +17,8 @@ export function DashboardGestor() {
   const user = useAuthStore(state => state.user);
   const trechos = useDataStore(state => state.trechos);
   const intervencoes = useDataStore(state => state.intervencoes);
-  const unreadCount = useNotificationStore(state => state.unreadCount);
+  const notificacoes = useNotificationStore(state => state.notificacoes);
+  const unreadCount = notificacoes.filter(n => n.usuario_id === user?.id && !n.lida).length;
 
   const vistorias = useDataStore(state => state.vistorias);
 

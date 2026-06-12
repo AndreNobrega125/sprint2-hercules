@@ -47,16 +47,8 @@ function TrechoDetalheRoute({ route }: any) {
 
 function AppTabsGestor() {
   const user = useAuthStore(state => state.user);
-  const initializeNotificacoes = useNotificationStore(
-    state => state.initializeNotificacoes
-  );
-  const unreadCount = useNotificationStore(state => state.unreadCount);
-
-  React.useEffect(() => {
-    if (user) {
-      initializeNotificacoes(user.id);
-    }
-  }, [user]);
+  const notificacoes = useNotificationStore(state => state.notificacoes);
+  const unreadCount = notificacoes.filter(n => n.usuario_id === user?.id && !n.lida).length;
 
   return (
     <Tab.Navigator
@@ -107,16 +99,8 @@ function AppTabsGestor() {
 
 function AppTabsFiscal() {
   const user = useAuthStore(state => state.user);
-  const initializeNotificacoes = useNotificationStore(
-    state => state.initializeNotificacoes
-  );
-  const unreadCount = useNotificationStore(state => state.unreadCount);
-
-  React.useEffect(() => {
-    if (user) {
-      initializeNotificacoes(user.id);
-    }
-  }, [user]);
+  const notificacoes = useNotificationStore(state => state.notificacoes);
+  const unreadCount = notificacoes.filter(n => n.usuario_id === user?.id && !n.lida).length;
 
   return (
     <Tab.Navigator
@@ -167,16 +151,8 @@ function AppTabsFiscal() {
 
 function AppTabsTrabalhador() {
   const user = useAuthStore(state => state.user);
-  const initializeNotificacoes = useNotificationStore(
-    state => state.initializeNotificacoes
-  );
-  const unreadCount = useNotificationStore(state => state.unreadCount);
-
-  React.useEffect(() => {
-    if (user) {
-      initializeNotificacoes(user.id);
-    }
-  }, [user]);
+  const notificacoes = useNotificationStore(state => state.notificacoes);
+  const unreadCount = notificacoes.filter(n => n.usuario_id === user?.id && !n.lida).length;
 
   return (
     <Tab.Navigator

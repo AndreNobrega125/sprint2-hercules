@@ -125,7 +125,7 @@ export function NotificacoesScreen() {
         <Text style={styles.title}>Notificações</Text>
         {unreadCount > 0 && (
           <TouchableOpacity
-            onPress={markAllAsRead}
+            onPress={() => markAllAsRead(user?.id || '')}
             style={styles.markAllButton}
           >
             <Text style={styles.markAllButtonText}>

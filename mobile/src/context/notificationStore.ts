@@ -4,28 +4,18 @@ import { mockNotificacoes } from '../mocks';
 
 interface NotificationStore {
   notificacoes: Notificacao[];
-  unreadCount: number;
   addNotificacao: (notificacao: Notificacao) => void;
   markAsRead: (id: string) => void;
-  markAllAsRead: () => void;
+  markAllAsRead: (usuarioId: string) => void;
   deleteNotificacao: (id: string) => void;
-  initializeNotificacoes: (usuarioId: string) => void;
 }
 
-export const useNotificationStore = create<NotificationStore>((set, get) => ({
-  notificacoes: [],
-  unreadCount: 0,
-
-  initializeNotificacoes: (usuarioId: string) => {
-    const userNotificacoes = mockNotificacoes.filter(n => n.usuario_id === usuarioId);
-    const unreadCount = userNotificacoes.filter(n => !n.lida).length;
-    set({ notificacoes: userNotificacoes, unreadCount });
-  },
+export const useNotificationStore = create<NotificationStore>((set) => ({
+  notificacoes: mockNotificacoes,
 
   addNotificacao: (notificacao: Notificacao) => {
     set(state => ({
-      notificacoes: [notificacao, ...state.notificacoes],
-      unreadCount: state.unreadCount + 1
+      notificacoes: [notificacao, ...state.notificacoes]
     }));
   },
 
@@ -33,15 +23,15 @@ export const useNotificationStore = create<NotificationStore>((set, get) => ({
     set(state => ({
       notificacoes: state.notificacoes.map(n =>
         n.id === id ? { ...n, lida: true } : n
-      ),
-      unreadCount: Math.max(0, state.unreadCount - 1)
+      )
     }));
   },
 
-  markAllAsRead: () => {
+  markAllAsRead: (usuarioId: string) => {
     set(state => ({
-      notificacoes: state.notificacoes.map(n => ({ ...n, lida: true })),
-      unreadCount: 0
+      notificacoes: state.notificacoes.map(n =>
+        n.usuario_id === usuarioId ? { ...n, lida: true } : n
+      )
     }));
   },
 
