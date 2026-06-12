@@ -24,12 +24,12 @@
 **Tempo**: 30s
 
 **Ações:**
-1. Na tela de login, inserir matrícula: `100001`
+1. Na tela de login, inserir matrícula: `G101`
 2. Clicar "Entrar"
 3. Esperar carregar o Dashboard do Gestor
 
 **O que falar:**
-> "Vamos começar com o Gestor. Usamos matrícula 100001. O app detecta automaticamente o perfil pela matrícula. Após o login, vemos o dashboard com KPIs: total de trechos, quantos estão OK, em atenção ou críticos. Temos também a taxa de conformidade regulatória que o Gestor precisa acompanhar."
+> "Vamos começar com o Gestor. Usamos matrícula G101. O app detecta automaticamente o perfil pela matrícula. Após o login, vemos o dashboard com KPIs: total de trechos, quantos estão OK, em atenção ou críticos. Temos também a taxa de conformidade regulatória que o Gestor precisa acompanhar."
 
 **Elementos a destacar:**
 - Cards de estatísticas (OK, Atenção, Crítico)
@@ -82,11 +82,11 @@
 
 **Ações:**
 1. Voltar ao login (clicar "Sair" no header ou logout)
-2. Inserir matrícula: `200001`
+2. Inserir matrícula: `F101`
 3. Mostrar dashboard do Fiscal
 
 **O que falar:**
-> "Agora vamos ao Fiscal com matrícula 200001. O dashboard muda completamente. Aqui o Fiscal vê os trechos críticos e em atenção de forma diferente, com foco nos lugares onde precisa fazer vistoria. Tem também o botão 'Nova Vistoria' destacado."
+> "Agora vamos ao Fiscal com matrícula F101. O dashboard muda completamente. Aqui o Fiscal vê os trechos críticos e em atenção de forma diferente, com foco nos lugares onde precisa fazer vistoria. Tem também o botão 'Nova Vistoria' destacado."
 
 **Elementos a destacar:**
 - Cores diferentes (azul mais claro)
@@ -145,11 +145,11 @@
 
 **Ações:**
 1. Voltar ao login
-2. Inserir matrícula: `300001`
+2. Inserir matrícula: `T101`
 3. Mostrar dashboard do Trabalhador
 
 **O que falar:**
-> "Por fim, temos o Trabalhador com matrícula 300001. O dashboard mostra as tarefas do dia: quantas estão pendentes, em andamento, e concluídas. O Trabalhador vê os trechos que precisa fazer a roçada e pode marcar como concluído quando termina."
+> "Por fim, temos o Trabalhador com matrícula T101. O dashboard mostra as tarefas do dia: quantas estão pendentes, em andamento, e concluídas. O Trabalhador vê os trechos que precisa fazer a roçada e pode marcar como concluído quando termina."
 
 **Elementos a destacar:**
 - Cores verde (tema Trabalhador)
@@ -162,7 +162,7 @@
 ## 📍 Checklist para Gravação
 
 - [ ] App compilando sem erros (npm start funciona)
-- [ ] 3 contas de teste criadas (100001, 200001, 300001)
+- [ ] 3 contas de teste criadas (G101, F101, T101)
 - [ ] Testes em emulador Android ou Expo Go
 - [ ] Áudio claro e sem barulhos
 - [ ] Vídeo em resolução decente (720p+ recomendado)

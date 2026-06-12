@@ -29,11 +29,23 @@ export function DashboardTrabalhador() {
       i.data_conclusao === new Date().toISOString().split('T')[0]
     );
 
+    // Trechos com vistoria registrada: pronto para fazer a roçada
+    const prontoParaRocada = pendentes.filter(i => {
+      const trecho = trechos.find(t => t.id === i.trecho_id);
+      return !!trecho?.data_ultima_vistoria;
+    });
+
+    // Trechos sem vistoria: aguardando o fiscal avaliar se precisa de roçada
+    const aguardandoFiscal = pendentes.filter(i => {
+      const trecho = trechos.find(t => t.id === i.trecho_id);
+      return !trecho?.data_ultima_vistoria;
+    });
+
     const trechosParaRocada = pendentes
       .map(int => trechos.find(t => t.id === int.trecho_id))
       .filter((t): t is Trecho => t !== undefined);
 
-    return { pendentes, emProgresso, concluidas, trechosParaRocada };
+    return { pendentes, emProgresso, concluidas, prontoParaRocada, aguardandoFiscal, trechosParaRocada };
   }, [intervencoes, trechos]);
 
   const renderIntervencaoItem = ({ item }: { item: Intervencao }) => {
@@ -43,6 +55,7 @@ export function DashboardTrabalhador() {
       media: '#ff9800',
       baixa: '#4caf50'
     }[item.prioridade];
+    const podeRocar = !!trecho?.data_ultima_vistoria;
 
     return (
       <View style={styles.intervencaoCard}>
@@ -72,23 +85,23 @@ export function DashboardTrabalhador() {
             {item.data_recomendada || 'Monitoramento'}
           </Text>
         </View>
-        <TouchableOpacity
-          style={styles.completeButton}
-          onPress={() => {
-            if (!trecho?.data_ultima_vistoria) {
-              Alert.alert(
-                'Erro',
-                'Não é possível marcar como concluída. O fiscal precisa fazer uma vistoria primeiro.',
-                [{ text: 'OK' }]
-              );
-              return;
-            }
-            completeIntervencao(item.id);
-            Alert.alert('Sucesso', 'Roçada marcada como concluída!', [{ text: 'OK' }]);
-          }}
-        >
-          <Text style={styles.completeButtonText}>Marcar Roçada como Concluída</Text>
-        </TouchableOpacity>
+        {podeRocar ? (
+          <TouchableOpacity
+            style={styles.completeButton}
+            onPress={() => {
+              completeIntervencao(item.id);
+              Alert.alert('Sucesso', 'Roçada marcada como concluída!', [{ text: 'OK' }]);
+            }}
+          >
+            <Text style={styles.completeButtonText}>Marcar Roçada como Concluída</Text>
+          </TouchableOpacity>
+        ) : (
+          <View style={styles.waitingBadge}>
+            <Text style={styles.waitingBadgeText}>
+              ⏳ Aguardando vistoria do fiscal
+            </Text>
+          </View>
+        )}
       </View>
     );
   };
@@ -120,15 +133,30 @@ export function DashboardTrabalhador() {
           </View>
         </View>
 
-        {stats.pendentes.length > 0 && (
+        {stats.prontoParaRocada.length > 0 && (
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Text style={styles.sectionTitle}>Aguardando Execução</Text>
-              <Text style={styles.badgeRed}>{stats.pendentes.length}</Text>
+              <Text style={styles.sectionTitle}>🌿 Pronto para Roçada</Text>
+              <Text style={styles.badgeRed}>{stats.prontoParaRocada.length}</Text>
             </View>
             <FlatList
               scrollEnabled={false}
-              data={stats.pendentes}
+              data={stats.prontoParaRocada}
+              renderItem={renderIntervencaoItem}
+              keyExtractor={item => item.id}
+            />
+          </View>
+        )}
+
+        {stats.aguardandoFiscal.length > 0 && (
+          <View style={styles.section}>
+            <View style={styles.sectionHeader}>
+              <Text style={styles.sectionTitle}>⏳ Aguardando Vistoria do Fiscal</Text>
+              <Text style={styles.badgeOrange}>{stats.aguardandoFiscal.length}</Text>
+            </View>
+            <FlatList
+              scrollEnabled={false}
+              data={stats.aguardandoFiscal}
               renderItem={renderIntervencaoItem}
               keyExtractor={item => item.id}
             />
@@ -319,6 +347,18 @@ const styles = StyleSheet.create({
   },
   completeButtonText: {
     color: '#fff',
+    fontSize: 12,
+    fontWeight: '600'
+  },
+  waitingBadge: {
+    marginTop: 10,
+    backgroundColor: '#fff3e0',
+    borderRadius: 6,
+    paddingVertical: 8,
+    alignItems: 'center'
+  },
+  waitingBadgeText: {
+    color: '#ff9800',
     fontSize: 12,
     fontWeight: '600'
   },

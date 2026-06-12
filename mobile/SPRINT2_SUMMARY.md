@@ -50,7 +50,7 @@ veroai-mobile/
 ### 1. Autenticação (LoginScreen)
 - Login com matrícula (sem validação de senha)
 - Role detection automático: `1xxxxx → Gestor`, `2xxxxx → Fiscal`, `3xxxxx → Trabalhador`
-- Exemplo: `100001` automaticamente detecta Gestor
+- Exemplo: `G101` automaticamente detecta Gestor
 
 ### 2. Dashboards (3 variantes)
 
@@ -122,9 +122,9 @@ Todos estruturados e realistas no contexto da Motiva.
 
 | Matrícula | Perfil | Nome | 
 |-----------|--------|------|
-| 100001 | Gestor | Carlos Silva |
-| 200001 | Fiscal | João Fiscal |
-| 300001 | Trabalhador | Pedro Trabalhador |
+| G101 | Gestor | Gestor |
+| F101 | Fiscal | Fiscal |
+| T101 | Trabalhador | Trabalhador |
 
 **Qualquer outra matrícula é aceita** (padrão = Fiscal)
 
@@ -208,7 +208,7 @@ npm start
 ## 🔄 Fluxo Principal (Testável)
 
 1. **Login**
-   - Inserir matrícula (100001, 200001 ou 300001)
+   - Inserir matrícula (G101, F101 ou T101)
    - Clicar "Entrar"
 
 2. **Dashboard Personalizado**
