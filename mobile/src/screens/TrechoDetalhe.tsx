@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { useNavigation, useFocusEffect as useNavFocusEffect } from '@react-navigation/native';
 import { useDataStore } from '../context/dataStore';
+import { useAuthStore } from '../context/authStore';
 import { Vistoria } from '../types';
 
 interface TrechoDetalheProps {
@@ -18,6 +19,7 @@ interface TrechoDetalheProps {
 
 export function TrechoDetalhe({ trechoId }: TrechoDetalheProps) {
   const navigation = useNavigation<any>();
+  const user = useAuthStore(state => state.user);
   const trecho = useDataStore(state => state.getTrechoById(trechoId));
   const vistorias = useDataStore(state => state.getVistoriasByTrecho(trechoId));
   const intervencoes = useDataStore(state =>
@@ -191,14 +193,16 @@ export function TrechoDetalhe({ trechoId }: TrechoDetalheProps) {
           )}
         </View>
 
-        <View style={styles.actionSection}>
-          <TouchableOpacity
-            style={styles.actionButton}
-            onPress={() => navigation.navigate('NovaVistoria', { trechoId })}
-          >
-            <Text style={styles.actionButtonText}>+ Registrar Nova Vistoria</Text>
-          </TouchableOpacity>
-        </View>
+        {user?.role !== 'trabalhador' && (
+          <View style={styles.actionSection}>
+            <TouchableOpacity
+              style={styles.actionButton}
+              onPress={() => navigation.navigate('NovaVistoria', { trechoId })}
+            >
+              <Text style={styles.actionButtonText}>+ Registrar Nova Vistoria</Text>
+            </TouchableOpacity>
+          </View>
+        )}
       </ScrollView>
     </SafeAreaView>
   );
