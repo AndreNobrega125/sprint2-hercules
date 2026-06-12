@@ -41,11 +41,12 @@ export function LoginScreen() {
           <Text style={styles.label}>Matrícula</Text>
           <TextInput
             style={styles.input}
-            placeholder="Ex: 100001 (Gestor), 200001 (Fiscal), 300001 (Trabalhador)"
+            placeholder="Ex: G101 (Gestor), F101 (Fiscal), T101 (Trabalhador)"
             placeholderTextColor="#999"
             value={matricula}
             onChangeText={setMatricula}
-            keyboardType="number-pad"
+            autoCapitalize="characters"
+            autoCorrect={false}
           />
 
           <TouchableOpacity
@@ -58,9 +59,9 @@ export function LoginScreen() {
 
           <View style={styles.info}>
             <Text style={styles.infoTitle}>Contas de Teste:</Text>
-            <Text style={styles.infoText}>• Gestor: 100001</Text>
-            <Text style={styles.infoText}>• Fiscal: 200001</Text>
-            <Text style={styles.infoText}>• Trabalhador: 300001</Text>
+            <Text style={styles.infoText}>• Gestor: G101</Text>
+            <Text style={styles.infoText}>• Fiscal: F101</Text>
+            <Text style={styles.infoText}>• Trabalhador: T101</Text>
           </View>
         </View>
       </View>
