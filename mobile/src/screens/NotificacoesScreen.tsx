@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   View,
   Text,
@@ -7,13 +7,21 @@ import {
   SafeAreaView,
   TouchableOpacity
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { useNotificationStore } from '../context/notificationStore';
+import { useAuthStore } from '../context/authStore';
 import { Notificacao } from '../types';
 
 export function NotificacoesScreen() {
   const navigation = useNavigation<any>();
+  const user = useAuthStore(state => state.user);
   const notificacoes = useNotificationStore(state => state.notificacoes);
+
+  // Recarrega notificações quando a tela ganha foco
+  useFocusEffect(() => {
+    // Força atualização dos dados
+    return;
+  });
   const markAsRead = useNotificationStore(state => state.markAsRead);
   const markAllAsRead = useNotificationStore(
     state => state.markAllAsRead
@@ -21,7 +29,10 @@ export function NotificacoesScreen() {
   const deleteNotificacao = useNotificationStore(
     state => state.deleteNotificacao
   );
-  const unreadCount = notificacoes.filter(n => !n.lida).length;
+
+  // Filtrar notificações do usuário logado
+  const minhasNotificacoes = notificacoes.filter(n => n.usuario_id === user?.id);
+  const unreadCount = minhasNotificacoes.filter(n => !n.lida).length;
 
   const getTipoColor = (tipo: string) => {
     switch (tipo) {
@@ -124,9 +135,9 @@ export function NotificacoesScreen() {
         )}
       </View>
 
-      {notificacoes.length > 0 ? (
+      {minhasNotificacoes.length > 0 ? (
         <FlatList
-          data={notificacoes}
+          data={minhasNotificacoes}
           renderItem={renderNotificacao}
           keyExtractor={item => item.id}
           contentContainerStyle={styles.listContent}

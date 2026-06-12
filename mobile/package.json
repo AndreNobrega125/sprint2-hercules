@@ -26,9 +26,11 @@
   },
   "scripts": {
     "start": "expo start",
+    "dev-fast": "EXPO_NO_TYPESCRIPT_SETUP=1 expo start --clear",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "clean": "rm -rf node_modules .expo && npm install"
   },
   "private": true
 }
