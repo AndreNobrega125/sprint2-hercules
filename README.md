@@ -4,6 +4,19 @@
 
 ---
 
+## Integrantes
+
+| Nome | RM |
+|------|----|
+| *(André Nobrega)* | *(RM561754)* |
+| *(André Gouveia)* | *(RM564219)* |
+| *(Caio Carminato)* | *(RM563630)* |
+| *(Guilherme Tamai)* | *(RM563276)* |
+| *(Mirella Mascarenhas)* | *(RM562092)* |
+| *(Vitor Komura)* | *(RM563694)* |
+
+---
+
 ## 🧭 Contexto e Evolução
 
 Na **Sprint 1**, foi desenvolvido um protótipo web em Next.js para validar o conceito do VeroAI: monitoramento de altura de vegetação em trechos de rodovia (SP-280) com classificação automática de risco.
