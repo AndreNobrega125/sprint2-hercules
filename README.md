@@ -129,52 +129,19 @@ A senha não é validada na Sprint 2 — qualquer valor é aceito. Apenas as 3 m
 
 ## 🖼️ Capturas de Tela
 
-### Login
-Tela de entrada com campo de matrícula (G101/F101/T101) e detecção automática do perfil.
-
-![Tela de Login](screenshots/Tela%20de%20login%20veroai.png)
-
-### Dashboard do Gestor
-Visão geral de todos os trechos, vistorias recentes e roçadas pendentes/concluídas.
-
-![Dashboard Gestor](screenshots/Tela%20gestor%20veroai.png)
-
-### Dashboard do Fiscal
-Trechos a vistoriar hoje, vistoriados hoje e acesso rápido para nova vistoria.
-
-![Dashboard Fiscal](screenshots/Tela%20fiscal%20veroai.png)
-
-### Dashboard do Trabalhador
-Roçadas prontas para execução e trechos aguardando vistoria do fiscal.
-
-![Dashboard Trabalhador](screenshots/Tela%20trabalhador%20veroai.png)
-
-### Lista de Trechos
-Os 5 trechos da SP-280 com status (OK/Atenção/Crítico) e última vistoria.
-
-![Lista de Trechos](screenshots/Tela%20trechos%20veroai.png)
-
-### Trechos que Precisam de Vistoria
-Destaque visual dos trechos pendentes, acessado pela notificação.
-
-![Trechos que Precisam de Vistoria](screenshots/Trechos%20que%20precisam%20de%20vistoria.png)
-
-### Detalhes do Trecho
-Informações completas do trecho, histórico de vistorias e intervenções.
-
-![Detalhes do Trecho](screenshots/Tela%20Informações%20do%20trecho.png)
-
-### Nova Vistoria (3 passos)
-Fluxo de registro: seleção do trecho, medição da altura e confirmação.
-
-| Passo 1 | Passo 2 | Passo 3 |
-|---------|---------|---------|
-| ![Vistoria Passo 1](screenshots/Tela%20Vistoria%20pt1.png) | ![Vistoria Passo 2](screenshots/Tela%20Vistoria%20pt2.png) | ![Vistoria Passo 3](screenshots/Tela%20Vistoria%20pt3.png) |
-
-### Notificações
-Lista de notificações por usuário, clicáveis e com opção de marcar como lida.
-
-![Notificações](screenshots/Tela%20notificações%20veroai.png)
+| Tela | Print | Descrição |
+|------|-------|-----------|
+| **Login** | ![Tela de Login](screenshots/Tela%20de%20login%20veroai.png) | Tela de entrada com campo de matrícula (G101/F101/T101) e detecção automática do perfil. |
+| **Dashboard do Gestor** | ![Dashboard Gestor](screenshots/Tela%20gestor%20veroai.png) | Visão geral de todos os trechos, vistorias recentes e roçadas pendentes/concluídas. |
+| **Dashboard do Fiscal** | ![Dashboard Fiscal](screenshots/Tela%20fiscal%20veroai.png) | Trechos a vistoriar hoje, vistoriados hoje e acesso rápido para nova vistoria. |
+| **Dashboard do Trabalhador** | ![Dashboard Trabalhador](screenshots/Tela%20trabalhador%20veroai.png) | Roçadas prontas para execução e trechos aguardando vistoria do fiscal. |
+| **Lista de Trechos** | ![Lista de Trechos](screenshots/Tela%20trechos%20veroai.png) | Os 5 trechos da SP-280 com status (OK/Atenção/Crítico) e última vistoria. |
+| **Trechos que Precisam de Vistoria** | ![Trechos que Precisam de Vistoria](screenshots/Trechos%20que%20precisam%20de%20vistoria.png) | Destaque visual dos trechos pendentes, acessado pela notificação. |
+| **Detalhes do Trecho** | ![Detalhes do Trecho](screenshots/Tela%20Informações%20do%20trecho.png) | Informações completas do trecho, histórico de vistorias e intervenções. |
+| **Nova Vistoria - Passo 1** | ![Vistoria Passo 1](screenshots/Tela%20Vistoria%20pt1.png) | Seleção do trecho a ser vistoriado. |
+| **Nova Vistoria - Passo 2** | ![Vistoria Passo 2](screenshots/Tela%20Vistoria%20pt2.png) | Medição da altura da vegetação. |
+| **Nova Vistoria - Passo 3** | ![Vistoria Passo 3](screenshots/Tela%20Vistoria%20pt3.png) | Observações e confirmação do registro. |
+| **Notificações** | ![Notificações](screenshots/Tela%20notificações%20veroai.png) | Lista de notificações por usuário, clicáveis e com opção de marcar como lida. |
 
 ---
 
