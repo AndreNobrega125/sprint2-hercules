@@ -129,13 +129,58 @@ A senha não é validada na Sprint 2 — qualquer valor é aceito. Apenas as 3 m
 
 ## 🖼️ Capturas de Tela
 
-> _Adicionar prints das telas (Login, Dashboards de cada perfil, Lista de Trechos, Detalhes, Nova Vistoria, Notificações)_
+### Login
+Tela de entrada com campo de matrícula (G101/F101/T101) e detecção automática do perfil.
+
+![Tela de Login](screenshots/Tela%20de%20login%20veroai.png)
+
+### Dashboard do Gestor
+Visão geral de todos os trechos, vistorias recentes e roçadas pendentes/concluídas.
+
+![Dashboard Gestor](screenshots/Tela%20gestor%20veroai.png)
+
+### Dashboard do Fiscal
+Trechos a vistoriar hoje, vistoriados hoje e acesso rápido para nova vistoria.
+
+![Dashboard Fiscal](screenshots/Tela%20fiscal%20veroai.png)
+
+### Dashboard do Trabalhador
+Roçadas prontas para execução e trechos aguardando vistoria do fiscal.
+
+![Dashboard Trabalhador](screenshots/Tela%20trabalhador%20veroai.png)
+
+### Lista de Trechos
+Os 5 trechos da SP-280 com status (OK/Atenção/Crítico) e última vistoria.
+
+![Lista de Trechos](screenshots/Tela%20trechos%20veroai.png)
+
+### Trechos que Precisam de Vistoria
+Destaque visual dos trechos pendentes, acessado pela notificação.
+
+![Trechos que Precisam de Vistoria](screenshots/Trechos%20que%20precisam%20de%20vistoria.png)
+
+### Detalhes do Trecho
+Informações completas do trecho, histórico de vistorias e intervenções.
+
+![Detalhes do Trecho](screenshots/Tela%20Informações%20do%20trecho.png)
+
+### Nova Vistoria (3 passos)
+Fluxo de registro: seleção do trecho, medição da altura e confirmação.
+
+| Passo 1 | Passo 2 | Passo 3 |
+|---------|---------|---------|
+| ![Vistoria Passo 1](screenshots/Tela%20Vistoria%20pt1.png) | ![Vistoria Passo 2](screenshots/Tela%20Vistoria%20pt2.png) | ![Vistoria Passo 3](screenshots/Tela%20Vistoria%20pt3.png) |
+
+### Notificações
+Lista de notificações por usuário, clicáveis e com opção de marcar como lida.
+
+![Notificações](screenshots/Tela%20notificações%20veroai.png)
 
 ---
 
 ## 🎬 Vídeo Demonstrativo
 
-> _Adicionar link do vídeo (YouTube não-listado) demonstrando o fluxo completo: Login → Dashboards → Vistoria → Roçada → Notificações_
+> Link do vídeo (YouTube não-listado): _adicionar aqui_
 
 ---
 
