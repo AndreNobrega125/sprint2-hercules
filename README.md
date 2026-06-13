@@ -90,6 +90,7 @@ Na **Sprint 2**, o projeto evoluiu para um **app mobile nativo em React Native/E
 ## 🚀 Como Rodar
 
 ```bash
+cd sprint2-hercules
 cd mobile
 npm install --legacy-peer-deps
 npx expo start
