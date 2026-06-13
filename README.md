@@ -160,7 +160,7 @@ A senha não é validada na Sprint 2 — qualquer valor é aceito. Apenas as 3 m
 
 ## 🎬 Vídeo Demonstrativo
 
-> Link do vídeo (YouTube não-listado): _adicionar aqui_
+> Link do vídeo: https://youtube.com/shorts/U-BYqQu7rhI?feature=share
 
 ---
 
